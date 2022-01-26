@@ -1,0 +1,76 @@
+{
+  "data": {
+    "id": 1,
+    "attributes": {
+      "course_name": "Beauty Therapy",
+      "course_description": "Beauty Therapy",
+      "course_price": 119,
+      "createdAt": "2022-01-21T17:29:34.519Z",
+      "updatedAt": "2022-01-22T11:32:25.772Z",
+      "publishedAt": "2022-01-22T11:32:25.588Z",
+      "course_image": {
+        "data": [
+          {
+            "id": 2,
+            "attributes": {
+              "name": "New Project (49)(62).jpg",
+              "alternativeText": "New Project (49)(62).jpg",
+              "caption": "New Project (49)(62).jpg",
+              "width": 590,
+              "height": 290,
+              "formats": {
+                "small": {
+                  "ext": ".jpg",
+                  "url": "/uploads/small_New_Project_49_62_c83cde06fb.jpg",
+                  "hash": "small_New_Project_49_62_c83cde06fb",
+                  "mime": "image/jpeg",
+                  "name": "small_New Project (49)(62).jpg",
+                  "path": null,
+                  "size": 15.39,
+                  "width": 500,
+                  "height": 246
+                },
+                "thumbnail": {
+                  "ext": ".jpg",
+                  "url": "/uploads/thumbnail_New_Project_49_62_c83cde06fb.jpg",
+                  "hash": "thumbnail_New_Project_49_62_c83cde06fb",
+                  "mime": "image/jpeg",
+                  "name": "thumbnail_New Project (49)(62).jpg",
+                  "path": null,
+                  "size": 5.94,
+                  "width": 245,
+                  "height": 120
+                }
+              },
+              "hash": "New_Project_49_62_c83cde06fb",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
+              "size": 18.99,
+              "url": "/uploads/New_Project_49_62_c83cde06fb.jpg",
+              "previewUrl": null,
+              "provider": "local",
+              "provider_metadata": null,
+              "createdAt": "2022-01-21T17:29:22.378Z",
+              "updatedAt": "2022-01-21T17:29:22.378Z"
+            }
+          }
+        ]
+      },
+      "course_video": {
+        "data": null
+      },
+      "test": {
+        "data": {
+          "id": 1,
+          "attributes": {
+            "test_name": "Beauty Therapy Expert Certification Test",
+            "createdAt": "2022-01-22T11:33:14.212Z",
+            "updatedAt": "2022-01-22T11:48:39.666Z",
+            "publishedAt": "2022-01-22T11:33:22.528Z"
+          }
+        }
+      }
+    }
+  },
+  "meta": {}
+}
