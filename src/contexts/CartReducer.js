@@ -7,7 +7,7 @@ const Storage = (cartItems) => {
 
 export const sumItems = (cartItems) => {
   Storage(cartItems);
-  console.log("cart" + JSON.stringify(cartItems));
+
   let itemCount = cartItems.reduce(
     (total, course) => total + course.quantity,
     0

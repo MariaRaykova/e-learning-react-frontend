@@ -14,45 +14,8 @@ const CourseItem = ({ course }) => {
     course.attributes.course_image.data.attributes.url
   );
   return (
-    <div className="card card-body">
-      {/*   <div class="single-product-wrapper">
-               <div class="product-img">
-                  <img src="assets/img/product-img/product-1.jpg" alt="" />
-                  <img
-                    class="hover-img"
-                    src="assets/img/product-img/product-2.jpg"
-                    alt=""
-                  />
-
-                  <div class="product-favourite">
-                    <a href="#" class="favme fa fa-heart"></a>
-                  </div>
-                </div>
-
-                <div class="product-description">
-                  <span>topshop</span>
-                  <a href="#">
-                    <h6>Knot Front Mini Dress</h6>
-                  </a>
-                  <p class="product-price">$80.00</p>
-
-                  <div class="hover-content">
-                    <div class="add-to-cart-btn">
-                      <a href="#" class="btn essence-btn">
-                        Add to Cart
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-                
-      {/* <img
-        style={{ display: "block", margin: "0 auto 10px", maxHeight: "200px" }}
-        className="img-fluid"
-        src={`${imageUrl}`}
-        alt=""
-      /> */}
-      <div class="single-product-wrapper">
+    <section class="single-product-wrapper">
+      <div class="product-img">
         <img
           style={{
             display: "block",
@@ -63,11 +26,22 @@ const CourseItem = ({ course }) => {
           src={`${imageUrl}`}
           alt=""
         />
+        {/* <img
+          style={{
+            display: "block",
+            margin: "0 auto 10px",
+            maxHeight: "200px"
+          }}
+          className="img-fluid"
+          src={`${imageUrl}`}
+          alt=""
+        /> */}
         {/* <img class="hover-img" src="assets/img/bg-img/bg-6.jpg" alt="" /> */}
         <div class="product-favourite">
           <a href="#" class="favme fa fa-heart"></a>
         </div>
-
+      </div>
+      <div class="product-description">
         <p>{course.attributes.course_name}</p>
         <div className="text-right">
           {course.attributes.course_short_description}
@@ -76,17 +50,14 @@ const CourseItem = ({ course }) => {
           {formatNumber(course.attributes.course_price)}
         </h3>
         <div className="text-right">
-          <Link to="/" className="btn btn-link btn-sm mr-2">
+          <Link
+            to={`/course/${course.id}`}
+            className="btn btn-link btn-sm mr-2"
+          >
             Details
           </Link>
-          <Link
-            className="snipcart-add-item btn btn-outline-danger btn-sm"
-            to={`/course/${course.id}`}
-            key={course.id}
-          >
-            Test
-          </Link>
-          {/* {isInCart(course) && (
+        </div>
+        {/* {isInCart(course) && (
             <button
               onClick={() => increase(course)}
               className="btn btn-outline-primary btn-sm"
@@ -95,25 +66,31 @@ const CourseItem = ({ course }) => {
             </button>
           )} */}
 
-          {!isInCart(course) && (
-            <button
-              type="button"
-              onClick={() => addCourse(course)}
-              className="snipcart-add-item btn btn-outline-danger btn-sm"
-              data-item-name={course.attributes.course_name}
-              data-item-price={course.attributes.course_price}
-              data-item-description={course.attributes.course_short_description}
-              data-item-min-quantity="0"
-              // data-item-max-quantity={course.attributes.quantity}
-              data-item-id={course.id}
-              data-item-url={imageUrl}
-            >
-              Add to cart
-            </button>
-          )}
-        </div>
+        {!isInCart(course) && (
+          <button
+            type="button"
+            onClick={() => addCourse(course)}
+            className="snipcart-add-item btn btn-outline-danger btn-sm"
+            data-item-name={course.attributes.course_name}
+            data-item-price={course.attributes.course_price}
+            data-item-description={course.attributes.course_short_description}
+            data-item-min-quantity="0"
+            // data-item-max-quantity={course.attributes.quantity}
+            data-item-id={course.id}
+            data-item-url={imageUrl}
+          >
+            Add to cart
+          </button>
+        )}
+        {/* <Link
+          className="snipcart-add-item btn btn-outline-danger btn-sm"
+          to={`/course/${course.id}`}
+          key={course.id}
+        >
+          Test
+        </Link> */}
       </div>
-    </div>
+    </section>
   );
 };
 

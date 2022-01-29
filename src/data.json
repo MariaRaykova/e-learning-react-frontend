@@ -72,5 +72,12 @@
       }
     }
   },
-  "meta": {}
-}
+  "meta": {},
+  {"jwt":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjQzNDYzOTk0LCJleHAiOjE2NDYwNTU5OTR9.XY4INTXpB74Ci6_vg-XCCgP3ikmBxWAE3z7tn-C7a4o",
+    "user
+    id":4,"username":"Mimi",
+    "email":"mimi@a123.bg",
+    "provider":"local","confirmed":true,"blocked":false,
+    "createdAt":"2022-01-29T13:46:34.296Z","updatedAt":"2022-01-29T13:46:34.296Z"}
+  }  
+},

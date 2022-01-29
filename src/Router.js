@@ -8,6 +8,9 @@ import NotFound from "./pages/NotFound";
 import Quiz from "./pages/Quiz";
 import Cart from "./pages/Cart";
 import Courses from "./pages/Courses";
+import Course from "./pages/Course";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 // import Cart from "../pages/cart";
 
 const Router = () => {
@@ -16,9 +19,12 @@ const Router = () => {
       <Route path="/about" element={<About />} />
       <Route path="/test" element={<Test />} />
       <Route exact path="/" element={<Home />} />
-      <Route path="/course/:id" element={<Quiz />} />
+      <Route path="/course/test/:id" element={<Quiz />} />
       <Route path="/cart" element={<Cart />} />
-      <Route path="/courses" element={<Courses />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route exact path="/course/:id" element={<Course />} />
+      <Route exact path="/courses" element={<Courses />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

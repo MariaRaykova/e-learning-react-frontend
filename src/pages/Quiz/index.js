@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 // import getTest from "../../utils/query";
 import { useNavigate, useParams } from "react-router-dom";
 // import "./quiz-styles.css";
-
+import PageWrapper from "../../components/PageWrapper";
 import { API_URL } from "../../utils";
 import { queryCourse } from "../../utils/query";
 
@@ -22,16 +22,18 @@ const Quiz = () => {
     res
       .json()
       .then((res) => {
+        // console.log(
+        //   JSON.stringify(
+        //     res.data.attributes.test.data.attributes?.questions?.data
+        //   )
+        // );
         setQuestions(res.data.attributes.test.data.attributes?.questions?.data);
       })
       .catch((err) => setErrors("error :", err));
   };
-
   useEffect(() => {
     getQuestions(course_id);
-    if (questions?.length > 0) {
-      setLoading(false);
-    }
+    setLoading(false);
   }, [questions.length]);
 
   const handleAnswerOptionClick = (isCorrect) => {
@@ -46,12 +48,51 @@ const Quiz = () => {
       setShowScore(true);
     }
   };
+  const showLoading = () => {
+    if (loading) {
+      return (
+        <div className="alert alert-success">
+          <h2>Loading...</h2>
+        </div>
+      );
+    }
+  };
+  console.log("loading " + questions);
+  const showQuestions = () => {
+    if (questions?.length < 0) {
+      // setLoading(false);
+
+      return (
+        <>
+          <div className="question-section">
+            <div className="question-count">
+              <span>Question {currentQuestion + 1}</span>/{questions?.length}
+            </div>
+            <div className="question-text">
+              {questions[currentQuestion].attributes.question}
+            </div>
+          </div>
+          <div className="answer-section">
+            {questions[currentQuestion].attributes.answers.data.map((data) => (
+              <button
+                className="quiz-button"
+                onClick={() =>
+                  handleAnswerOptionClick(data.attributes.isCorrect)
+                }
+              >
+                {data.attributes.answer}
+              </button>
+            ))}
+          </div>
+        </>
+      );
+    }
+  };
   return (
-    <div className="quiz-body">
-      <div className="quiz">
-        {loading ? (
-          <div>loading....</div>
-        ) : (
+    <PageWrapper>
+      <div className="quiz-body">
+        <div className="quiz">
+          {showLoading()}
           <div>
             {showScore ? (
               <div className="score-section">
@@ -59,35 +100,39 @@ const Quiz = () => {
               </div>
             ) : (
               <>
-                <div className="question-section">
-                  <div className="question-count">
-                    <span>Question {currentQuestion + 1}</span>/
-                    {questions?.length}
-                  </div>
-                  <div className="question-text">
-                    {questions[currentQuestion].attributes.question}
-                  </div>
-                </div>
-                <div className="answer-section">
-                  {questions[currentQuestion].attributes.answers.data.map(
-                    (data) => (
-                      <button
-                        className="quiz-button"
-                        onClick={() =>
-                          handleAnswerOptionClick(data.attributes.isCorrect)
-                        }
-                      >
-                        {data.attributes.answer}
-                      </button>
-                    )
-                  )}
-                </div>
+                {questions?.length > 1 ? (
+                  <>
+                    <div className="question-section">
+                      <div className="question-count">
+                        <span>Question {currentQuestion + 1}</span>/
+                        {questions?.length}
+                      </div>
+                      <div className="question-text">
+                        {questions[currentQuestion].attributes.question}
+                      </div>
+                    </div>
+                    <div className="answer-section">
+                      {questions[currentQuestion].attributes.answers.data.map(
+                        (data) => (
+                          <button
+                            className="quiz-button"
+                            onClick={() =>
+                              handleAnswerOptionClick(data.attributes.isCorrect)
+                            }
+                          >
+                            {data.attributes.answer}
+                          </button>
+                        )
+                      )}
+                    </div>
+                  </>
+                ) : null}
               </>
             )}
           </div>
-        )}
+        </div>
       </div>
-    </div>
+    </PageWrapper>
   );
 };
 export default Quiz;

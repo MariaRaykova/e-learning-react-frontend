@@ -1,8 +1,6 @@
 export const API_URL = "http://localhost:1337";
+//export const API_URL = "https://e-learning-strapi-backend.herokuapp.com";
 
-//export const API_URL = "https://elearning-strapi.herokuapp.com";
-// export const API_URL = "https://elearning-strapi.herokuapp.com";
-//   process.env.NEXT_PUBLIC_API_URL || "http://localhost:1338"
 export const formatNumber = (number) => {
   return new Intl.NumberFormat("en-US", {
     style: "currency",

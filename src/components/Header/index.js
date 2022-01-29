@@ -1,12 +1,53 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-// import { CartContext } from '../../contexts/CartContext';
-// import {CartIcon} from '../icons';
-// import styles from './header.module.scss';
+import React, { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+// import Cookie from "js-cookie";
+import { CartContext } from "../../contexts/CartContext";
+import AuthContext from "../../contexts/AuthContext";
 
 const Header = () => {
-  // const { itemCount } = useContext(CartContext);
+  const { itemCount } = useContext(CartContext);
+  const { user, setUser } = useContext(AuthContext);
+  const history = useNavigate();
 
+  const logout = () => {
+    //remove token and user cookie
+    window.localStorage.clear();
+    // Cookie.remove("token");
+    // delete window.__user;
+    // sync logout between multiple windows
+    // window.localStorage.setItem("logout", Date.now());
+    //redirect to the home page
+    history("/");
+  };
+
+  //Higher Order Component to wrap our pages and logout simultaneously logged in tabs
+  // THIS IS NOT USED in the tutorial, only provided if you wanted to implement
+  // const withAuthSync = (Component) => {
+  //   const Wrapper = (props) => {
+  //     const syncLogout = (event) => {
+  //       if (event.key === "logout") {
+  //         history("/login");
+  //       }
+  //     };
+
+  //     useEffect(() => {
+  //       window.addEventListener("storage", syncLogout);
+
+  //       return () => {
+  //         window.removeEventListener("storage", syncLogout);
+  //         window.localStorage.removeItem("logout");
+  //       };
+  //     }, []);
+
+  //     return <Component {...props} />;
+  //   };
+
+  //   if (Component.getInitialProps) {
+  //     Wrapper.getInitialProps = Component.getInitialProps;
+  //   }
+
+  //   return Wrapper;
+  // };
   return (
     <header class="header_area">
       <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
@@ -147,28 +188,38 @@ const Header = () => {
           </div>
 
           <div class="user-login-info">
-            <a href="#">
-              <img src="assets/img/core-img/user.svg" alt="" />
-            </a>
-          </div>
-
-          <div class="cart-area">
-            <Link to="/cart" class="snipcart-checkout">
-              {" "}
-              {/* <CartIcon />  */}
-              <img src="assets/img/core-img/bag.svg" alt="" /> Cart (
-              <span class="snipcart-items-count">0</span>)
-            </Link>
-            <a href="/#/dashboard" class="snipcart-user-profile">
+            {user ? (
+              <div>
+                <h5>{user.username}</h5>
+                <Link
+                  to="/"
+                  onClick={() => {
+                    logout();
+                    setUser(null);
+                  }}
+                >
+                  Logout
+                </Link>
+                {/* <a href="/#/dashboard" class="snipcart-user-profile">
               <span>
                 <img src="https://img.icons8.com/officel/16/000000/guest-male.png" />
               </span>{" "}
               Account
-            </a>
-
-            {/* <a href="#" id="essenceCartBtn">
-              <img src="assets/img/core-img/bag.svg" alt="" /> <span>3</span>
             </a> */}
+              </div>
+            ) : (
+              <Link to="/login">
+                <img src="assets/img/core-img/user.svg" alt="" />
+                {/* Sign in */}
+              </Link>
+            )}
+          </div>
+
+          <div class="cart-area">
+            <Link to="/cart" class="snipcart-checkout">
+              <img src="assets/img/core-img/bag.svg" alt="" />
+              <span class="snipcart-items-count">{itemCount}</span>
+            </Link>
           </div>
         </div>
       </div>
