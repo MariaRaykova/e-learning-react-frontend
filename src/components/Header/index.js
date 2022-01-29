@@ -166,6 +166,14 @@ const Header = () => {
           </div>
         </nav>
 
+        {user ? (
+          <div class="header-meta d-flex clearfix justify-content-end">
+            <div>
+              <h5>Welcome, {user.username}</h5>
+            </div>
+          </div>
+        ) : null}
+
         <div class="header-meta d-flex clearfix justify-content-end">
           <div class="search-area">
             <form action="#" method="post">
