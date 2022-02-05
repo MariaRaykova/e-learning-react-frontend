@@ -14,6 +14,10 @@ const Cart = () => {
     checkout,
     handleCheckout
   } = useContext(CartContext);
+  const publicToken = new URLSearchParams(window.location.search).get(
+    "publicToken"
+  );
+  console.log(publicToken);
 
   return (
     <PageWrapper>
@@ -30,13 +34,16 @@ const Cart = () => {
             ) : (
               <div className="p-3 text-center text-muted">
                 Your cart is empty
+                <Link to="/courses" className="btn btn-outline-success btn-sm">
+                  Back To All Courses
+                </Link>
               </div>
             )}
 
             {checkout && (
               <div className="p-3 text-center text-success">
                 <p>Checkout successfull</p>
-                <Link to="/" className="btn btn-outline-success btn-sm">
+                <Link to="/courses" className="btn btn-outline-success btn-sm">
                   BUY MORE
                 </Link>
               </div>

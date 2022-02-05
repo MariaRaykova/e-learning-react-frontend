@@ -1,26 +1,25 @@
 import React, { useState, useEffect, useContext } from "react";
-// import getTest from "../../utils/query";
+import { Link } from "react-router-dom";
 import { useNavigate, useParams } from "react-router-dom";
-// import "./quiz-styles.css";
 import PageWrapper from "../../components/PageWrapper";
 import { API_URL } from "../../utils";
 import { queryCourse } from "../../utils/query";
 import { CoursesContext } from "../../contexts/CoursesContext";
 import { formatNumber, fromImageToUrl } from "../../utils";
 import { CartContext } from "../../contexts/CartContext";
-import { Link } from "react-router-dom";
+
 const Course = () => {
   const params = useParams();
   const course_id = params.id;
   const { courses } = useContext(CoursesContext);
   const course = courses[course_id].attributes;
-  console.log("course" + JSON.stringify(course));
+  // console.log("course" + JSON.stringify(course));
   const { addCourse, cartItems, increase } = useContext(CartContext);
 
   const isInCart = (course) => {
     return !!cartItems.find((item) => item.id === course.id);
   };
-  const imageUrl = fromImageToUrl(course.course_image.data.attributes.url);
+  const imageUrl = fromImageToUrl(course.course_image?.data?.attributes.url);
   return (
     <PageWrapper>
       <section>
@@ -51,14 +50,14 @@ const Course = () => {
           </div>
         </div>
         <div class="product-description">
-          <p>{course.course_name}</p>
+          <h2>{course.course_name}</h2>
           <div className="text-right">{course.course_short_description}</div>
           <h3 className="text-left">{formatNumber(course.course_price)}</h3>
-          <div className="text-right">
+          {/* <div className="text-right">
             <Link to="/" className="btn btn-link btn-sm mr-2">
               Details
-            </Link>
-          </div>
+            </Link> 
+          </div> */}
           {/* {isInCart(course) && (
             <button
               onClick={() => increase(course)}
@@ -79,7 +78,7 @@ const Course = () => {
               data-item-min-quantity="0"
               // data-item-max-quantity={course.attributes.quantity}
               data-item-id={course.id}
-              data-item-url={imageUrl}
+              data-item-url="https://e-learning-strapi-backend.herokuapp.com"
             >
               Add to cart
             </button>

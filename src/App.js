@@ -32,8 +32,6 @@ function App(props) {
         });
     }
   };
-  //https://strapi.io/blog/nextjs-react-hooks-strapi-auth-4
-  //https://github.com/MariaRaykova/newdesire/blob/fb66b80ecedd3e746f337ecc12c3c4ed9d529ed1/src/App.js
 
   useEffect(() => {
     getUser();

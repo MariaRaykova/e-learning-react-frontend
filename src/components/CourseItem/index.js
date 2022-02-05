@@ -11,7 +11,7 @@ const CourseItem = ({ course }) => {
   };
 
   const imageUrl = fromImageToUrl(
-    course.attributes.course_image.data.attributes.url
+    course.attributes.course_image?.data?.attributes.url
   );
   return (
     <section class="single-product-wrapper">
@@ -77,7 +77,7 @@ const CourseItem = ({ course }) => {
             data-item-min-quantity="0"
             // data-item-max-quantity={course.attributes.quantity}
             data-item-id={course.id}
-            data-item-url={imageUrl}
+            data-item-url={`https://app.snipcart.com/api/products`}
           >
             Add to cart
           </button>
